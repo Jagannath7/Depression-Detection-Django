@@ -1,0 +1,7 @@
+db.sqlite3
+settings.py
+savedModels
+image_model.h5
+text_model.h5
+tokenizer1.pickle
+predictionModules

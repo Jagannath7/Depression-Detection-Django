@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Depression Detection</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+  
+</head>
+<body>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <a href="/signin"><h2 class="inactive underlineHover"> Sign In </h2></a>
+    <h2 class="active">Sign Up </h2>
+
+
+    
+    <!-- Login Form -->
+    <form action="/signup" method="POST">
+      {% csrf_token %}
+      <input type="text" id="name" class="fadeIn second" name="name" placeholder="Name">
+      <input type="text" id="contact" class="fadeIn second" name="contact" placeholder="Contact No.">
+      <input type="email" id="login" class="fadeIn second" name="email" placeholder="Email">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
+      <input href ='/' type="submit" class="fadeIn fourth" value="Sign Up">
+    </form>
+
+  </div>
+</div>
+</body>
+</html>

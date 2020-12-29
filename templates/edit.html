@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Depression Detection</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+  
+</head>
+<body>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+  
+    <h2 class="active">Edit Profile</h2>
+
+
+    
+    <!-- Login Form -->
+    <form method="POST" action="/edit">
+      {% csrf_token %}
+      <br>
+      <div>
+        <label for="formGroupExampleInput2" style="color: #56baed;">Username</label>
+        <input type="text" class="fadeIn third" name="name" id="formGroupExampleInput2" value="{{name}}">
+      </div>
+      <div>
+        <label for="formGroupExampleInput2" style="color: #56baed;">Email</label><br>
+        <input type="text" class="fadeIn third" name="email" id="formGroupExampleInput2" value="{{email}}">
+      </div>
+      <div>
+        <label for="formGroupExampleInput2" style="color: #56baed;">Contact</label>
+        <input type="text" class="fadeIn third" name="contact" id="formGroupExampleInput2" value="{{contact}}">
+      </div>
+      <br>
+      <br>
+      <div>
+        <input type="submit" class = "fadeIn fourth"value="Save">
+      </div>
+
+      <div>
+        <input formaction = "/" type="submit" class ="fadeIn fourth" value="back to home">
+      </div>
+    </form>
+
+  </div>
+</div>
+</body>
+</html>

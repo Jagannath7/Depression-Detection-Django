@@ -1,0 +1,17 @@
+<form method="POST" action="/edit">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="formGroupExampleInput">Example label</label>
+      <input type="text" class="form-control" name="name" id="formGroupExampleInput" value="{{name}}">
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Another label</label>
+      <input type="text" class="form-control" name="email" id="formGroupExampleInput2" value="{{email}}">
+    </div>
+    <div class="form-group">
+        <label for="formGroupExampleInput2"> Yet Another label</label>
+        <input type="text" class="form-control" name="contact" id="formGroupExampleInput2" value="{{contact}}">
+      </div>
+      <input type="submit" value="Save">
+      <input formaction = "/" type="submit" value="back to home">
+  </form>
