@@ -33,16 +33,23 @@
         <input type="text" class="fadeIn third" name="contact" id="formGroupExampleInput2" value="{{contact}}">
       </div>
       <br>
-      <br>
       <div>
-        <input type="submit" class = "fadeIn fourth"value="Save">
+        <input type="submit" class = "fadeIn fourth"value="Save" style="margin-bottom: 5px ;">
       </div>
 
       <div>
-        <input formaction = "/" type="submit" class ="fadeIn fourth" value="back to home">
+        <input formaction = "/myaccount" type="submit" class ="fadeIn fourth" value="Back To My account ">
       </div>
     </form>
-
+    {% if messages %}
+   
+        {% for message in messages %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style=" background-color:#d4edda;border-color: #c3e6cb;height: 30px;">
+          {{message}}
+        </div>
+        {% endfor %}
+      
+    {% endif %}
   </div>
 </div>
 </body>

@@ -19,13 +19,25 @@
     <!-- Login Form -->
     <form action="/signin" method="POST">
       {% csrf_token %}
-      <input type="text" id="login" class="fadeIn second" name="name" placeholder="name">
+      <input type="text" id="login" class="fadeIn second" name="name" placeholder="Username">
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
-      <input href='/' type="submit" class="fadeIn fourth" value="Sign In">
-      <a href='/passwordreset' type="submit" class="fadeIn fourth" value="Forgot Password">Forgot Password</a>
+      <input href='/' type="submit" class="fadeIn" value="Sign In" style="margin-bottom: 5px ;">
+      <a href='/passwordreset' type="submit"  value="Forgot Password" style="font-size: 13px; padding-left: 270px;">Forgot Password?</a>
+      <a href='/' type="submit"  value="Forgot Password" style="font-size: 13px; padding-left: 270px;">Back To Home</a>
     </form>
-
-
+    <br>
+  
+    
+    {% if messages %}
+   
+        {% for message in messages %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style=" background-color:#d4edda;border-color: #c3e6cb;height: 30px;">
+          {{message}}
+        </div>
+        {% endfor %}
+      
+    {% endif %}
+ 
 <!-- 
 	Will add in future
     <div id="formFooter">

@@ -65,6 +65,7 @@ def signup(request):
 def signout(request):
     auth.logout(request)
     print("signed out")
+    messages.info(request, 'Sign out successfull ')
     return redirect('/signin')    
 
 def data(request):
@@ -95,6 +96,7 @@ def edit(request):
         userDataEdit.contact = contact_
         user_data_edit.save()
         userDataEdit.save()
+        messages.info(request, 'Profile Updated')
         return render(request, 'edit.html',{'name':userDataEdit.name, 'email':userDataEdit.email, 'contact':userDataEdit.contact})
     else:
         user_data_edit = request.user
