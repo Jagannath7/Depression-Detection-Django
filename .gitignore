@@ -5,4 +5,3 @@ image_model.h5
 text_model.h5
 tokenizer1.pickle
 predictionModules
-hello
