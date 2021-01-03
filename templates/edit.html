@@ -2,55 +2,86 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Depression Detection</title>
-  <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
-  
-</head>
-<body>
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <!-- Tabs Titles -->
-  
-    <h2 class="active">Edit Profile</h2>
+  <head>
+    <title>Depression Detection</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}" />
+  </head>
+  <body>
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+        <!-- Tabs Titles -->
 
+        <h2 class="active">Edit Profile</h2>
 
-    
-    <!-- Login Form -->
-    <form method="POST" action="/edit">
-      {% csrf_token %}
-      <br>
-      <div>
-        <label for="formGroupExampleInput2" style="color: #56baed;">Username</label>
-        <input type="text" class="fadeIn third" name="name" id="formGroupExampleInput2" value="{{name}}">
-      </div>
-      <div>
-        <label for="formGroupExampleInput2" style="color: #56baed;">Email</label><br>
-        <input type="text" class="fadeIn third" name="email" id="formGroupExampleInput2" value="{{email}}">
-      </div>
-      <div>
-        <label for="formGroupExampleInput2" style="color: #56baed;">Contact</label>
-        <input type="text" class="fadeIn third" name="contact" id="formGroupExampleInput2" value="{{contact}}">
-      </div>
-      <br>
-      <div>
-        <input type="submit" class = "fadeIn fourth"value="Save" style="margin-bottom: 5px ;">
-      </div>
+        <!-- Login Form -->
+        <form method="POST" action="/edit">
+          {% csrf_token %}
+          <br />
+          <div>
+            <label for="formGroupExampleInput2" style="color: #56baed"
+              >Username</label
+            >
+            <input
+              type="text"
+              class="fadeIn third"
+              name="name"
+              id="formGroupExampleInput2"
+              value="{{name}}"
+            />
+          </div>
+          <div>
+            <label for="formGroupExampleInput2" style="color: #56baed"
+              >Email</label
+            ><br />
+            <input
+              type="text"
+              class="fadeIn third"
+              name="email"
+              id="formGroupExampleInput2"
+              value="{{email}}"
+            />
+          </div>
+          <div>
+            <label for="formGroupExampleInput2" style="color: #56baed"
+              >Contact</label
+            >
+            <input
+              type="text"
+              class="fadeIn third"
+              name="contact"
+              id="formGroupExampleInput2"
+              value="{{contact}}"
+            />
+          </div>
+          <br />
+          <div>
+            <input
+              type="submit"
+              class="fadeIn fourth"
+              value="Save"
+              style="margin-bottom: 5px"
+            />
+          </div>
 
-      <div>
-        <input formaction = "/myaccount" type="submit" class ="fadeIn fourth" value="Back To My account ">
-      </div>
-    </form>
-    {% if messages %}
-   
-        {% for message in messages %}
-        <div class="alert alert-danger alert-dismissible fade show" role="alert" style=" background-color:#d4edda;border-color: #c3e6cb;height: 30px;">
+          <div>
+            <input
+              formaction="/myaccount"
+              type="submit"
+              class="fadeIn fourth"
+              value="Back To My account "
+            />
+          </div>
+        </form>
+        {% if messages %} {% for message in messages %}
+        <div
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+          style="background-color: #d4edda; border-color: #c3e6cb; height: 30px"
+        >
           {{message}}
         </div>
-        {% endfor %}
-      
-    {% endif %}
-  </div>
-</div>
-</body>
+        {% endfor %} {% endif %}
+      </div>
+    </div>
+  </body>
 </html>

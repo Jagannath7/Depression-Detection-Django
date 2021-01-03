@@ -65,7 +65,7 @@ def signup(request):
 def signout(request):
     auth.logout(request)
     print("signed out")
-    messages.info(request, 'Sign out successfull ')
+    messages.info(request, 'Signed out successfully!!! ')
     return redirect('/signin')    
 
 def data(request):

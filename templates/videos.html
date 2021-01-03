@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+  </head>
+
+  <body
+    style="background-image: url(https://wallpaperaccess.com/full/449903.jpg)"
+  >
+    <nav
+      class="navbar navbar-expand-lg navbar-light"
+      style="
+        background-image: linear-gradient(
+          to left top,
+          #ffffff,
+          #f1d9f6,
+          #f6add6,
+          #fc7e9f,
+          #f05454
+        );
+      "
+    >
+      <a class="navbar-brand" href="/">Depression Detection</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          <li class="nav-item dropdown active">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Tools
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              {%if user.is_authenticated %}
+              <a class="dropdown-item" href="/prediction/image"
+                >Image Detection</a
+              >
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/prediction/text"
+                >Text Detection</a
+              >
+              {%else%}
+              <a class="dropdown-item" href="/signin">Image Detection</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/signin">Text Detection</a>
+              {%endif%}
+            </div>
+          </li>
+          <li class="nav-item dropdown active">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Resources
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item a1" href="/resources/books">Books</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/resources/movies">Movies</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/resources/videos">Videos</a>
+            </div>
+          </li>
+          {%if user.is_authenticated%}
+          <li class="nav-item dropdown active">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink-4"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              ><i class="fa fa-user"></i
+            ></a>
+            <div
+              class="dropdown-menu dropdown-menu-right dropdown-cyan"
+              aria-labelledby="navbarDropdownMenuLink-4"
+            >
+              <a class="dropdown-item" href="/myaccount">My account</a>
+              <a class="dropdown-item" href="/signout">Sign out</a>
+            </div>
+          </li>
+          <li class="nav-item active">
+            {%else%}
+
+            <a class="btn btn-primary" href="/signin">Sign in</a>
+          </li>
+          {%endif%}
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container" style="display: flex; justify-content: center">
+      <div class="child">
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            margin-bottom: 50px;
+          "
+        >
+          <div
+            class="card text-center"
+            style="
+              width: 10rem;
+              height: 4rem;
+              border-radius: 16px;
+              background-color: #ffffff;
+              box-shadow: 7px 7px 7px 7px black;
+            "
+          >
+            <div class="card-body"> Videos </div>
+          </div>
+        </div>
+
+        <div class="card" style="width: 800px; border-radius: 20px">
+          <div class="card-body">
+            <h4 class="card-title">Overcoming hopelessness</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Speaker: Nick Vujicic</h6>
+            <p class="card-text">
+              Nick talks about the importance of parenting in early childhood
+              and it's significance in overcoming hopelessness. Willpower is a
+              driving force for making our big dreams come true, but if we don't
+              get a miracle in life, we can always be a miracle to someone
+              else.Nick Vujicic was born in Australia to a Serbian immigrant
+              family, with a rare disorder characterized by the absence of all
+              four limbs. Most of his childhood he struggled with depression,
+              and after a suicide attempt he decided to concentrate on what he
+              did have instead on what he didn't. He realized that his life
+              story inspires many people.</p
+            >
+            <a
+              href="https://www.youtube.com/watch?v=6P2nPI6CTlc"
+              class="card-link"
+              >Link to video</a
+            >
+          </div>
+        </div>
+
+        <br />
+
+        <div class="card" style="width: 800px; border-radius: 20px">
+          <div class="card-body">
+            <h4 class="card-title">The psychology of self-motivation</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Speaker: Scott Geller</h6>
+            <p class="card-text"
+              >Scott Geller is Alumni Distinguished Professor at Virginia Tech
+              and Director of the Center for Applied Behavior Systems in the
+              Department of Psychology. He is a Fellow of the American
+              Psychological Association, the Association for Psychological
+              Science, and the World Academy of Productivity and Quality. He has
+              written numerous articles and books, including When No One's
+              Watching: Living and Leading Self-motivation. Scott will examine
+              how we can become self-motivated in "The Psychology of
+              Self-Motivation."</p
+            >
+            <a
+              href="https://www.youtube.com/watch?v=7sxpKhIbr0E"
+              class="card-link"
+              >Link to video</a
+            >
+          </div>
+        </div>
+
+        <br />
+
+        <div class="card" style="width: 800px; border-radius: 20px">
+          <div class="card-body">
+            <h4 class="card-title"
+              >Inside the mind of a master procrastinator</h4
+            >
+            <h6 class="card-subtitle mb-2 text-muted">Speaker: Tim Urban</h6>
+            <p class="card-text"
+              >Tim Urban knows that procrastination doesn't make sense, but he's
+              never been able to shake his habit of waiting until the last
+              minute to get things done. In this hilarious and insightful talk,
+              Urban takes us on a journey through YouTube binges, Wikipedia
+              rabbit holes and bouts of staring out the window -- and encourages
+              us to think harder about what we're really procrastinating on,
+              before we run out of time.</p
+            >
+            <a
+              href="https://www.youtube.com/watch?v=arj7oStGLkU"
+              class="card-link"
+              >Link to video</a
+            >
+          </div>
+        </div>
+
+        <br />
+
+        <div class="card" style="width: 800px; border-radius: 20px">
+          <div class="card-body">
+            <h4 class="card-title">The next outbreak? We’re not ready</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Speaker: Bill Gates</h6>
+            <p class="card-text">
+              In 2014, the world avoided a horrific global outbreak of Ebola,
+              thanks to thousands of selfless health workers -- plus, frankly,
+              thanks to some very good luck. In hindsight, we know what we
+              should have done better. So, now's the time, Bill Gates suggests,
+              to put all our good ideas into practice, from scenario planning to
+              vaccine research to health worker training. As he says, "There's
+              no need to panic ... but we need to get going."</p
+            >
+            <a
+              href="https://www.youtube.com/watch?v=6Af6b_wyiwI"
+              class="card-link"
+              >Link to video</a
+            >
+          </div>
+        </div>
+
+        <br />
+
+        <div class="card" style="width: 800px; border-radius: 20px">
+          <div class="card-body">
+            <h4 class="card-title">What makes you special?</h4>
+            <h6 class="card-subtitle mb-2 text-muted"
+              >Speaker: Mariana Atencio</h6
+            >
+            <p class="card-text">
+              NBC News journalist Mariana Atencio has traveled the world from
+              Haiti to Hong Kong. In her TEDx talk, Mariana tells us how the
+              people she's met along the way and her own immigrant experience
+              have taught her that the only thing we all have in common is being
+              human. Get ready to 'get human' and embrace what makes you
+              different! Take a stand to defend your race: the human race!</p
+            >
+            <a
+              href="https://www.youtube.com/watch?v=MY5SatbZMAo"
+              class="card-link"
+              >Link to video</a
+            >
+          </div>
+        </div>
+        <br />
+      </div>
+    </div>
+  </body>
+</html>

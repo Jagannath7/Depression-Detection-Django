@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+  </head>
+  <body
+    style="background-image: url(https://wallpaperaccess.com/full/449903.jpg)"
+  >
+    <nav
+      class="navbar navbar-expand-lg navbar-light"
+      style="
+        background-image: linear-gradient(
+          to left top,
+          #ffffff,
+          #f1d9f6,
+          #f6add6,
+          #fc7e9f,
+          #f05454
+        );
+      "
+    >
+      <a class="navbar-brand" href="/">Depression Detection</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          <li class="nav-item dropdown active">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Tools
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              {%if user.is_authenticated %}
+              <a class="dropdown-item" href="/prediction/image"
+                >Image Detection</a
+              >
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/prediction/text"
+                >Text Detection</a
+              >
+              {%else%}
+              <a class="dropdown-item" href="/signin">Image Detection</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/signin">Text Detection</a>
+              {%endif%}
+            </div>
+          </li>
+          <li class="nav-item dropdown active">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Resources
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item a1" href="/resources/books">Books</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/resources/movies">Movies</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/resources/videos">Videos</a>
+            </div>
+          </li>
+          {%if user.is_authenticated%}
+          <li class="nav-item dropdown active">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink-4"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              ><i class="fa fa-user"></i
+            ></a>
+            <div
+              class="dropdown-menu dropdown-menu-right dropdown-cyan"
+              aria-labelledby="navbarDropdownMenuLink-4"
+            >
+              <a class="dropdown-item" href="/myaccount">My account</a>
+              <a class="dropdown-item" href="/signout">Sign out</a>
+            </div>
+          </li>
+          <li class="nav-item active">
+            {%else%}
+
+            <a class="btn btn-primary" href="/signin">Sign in</a>
+          </li>
+          {%endif%}
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container" style="display: flex; justify-content: center">
+      <div class="child">
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            margin-bottom: 50px;
+          "
+        >
+          <div
+            class="card text-center"
+            style="
+              width: 10rem;
+              height: 4rem;
+              border-radius: 16px;
+              background-color: #ffffff;
+              box-shadow: 7px 7px 7px 7px black;
+            "
+          >
+            <div class="card-body"> Books </div>
+          </div>
+        </div>
+
+        <div class="card" style="width: 800px">
+          <div class="row no-gutters">
+            <div class="col-auto">
+              <img
+                src="https://jamesstuber.com/img/atomichabits.jpg"
+                class="img-fluid"
+                alt=""
+                style="width: 300px; height: 350px; border-radius: 3px"
+              />
+            </div>
+            <div class="col">
+              <div class="card-block px-4" style="margin-top: 30px">
+                <h4 class="card-title"><u>Atomic Habits by James Clear</u></h4>
+                <p class="card-text"
+                  >People think that when you want to change your life, you need
+                  to think big. But world-renowned habits expert James Clear has
+                  discovered another way. He knows that real change comes from
+                  the compound effect of hundreds of small decisions: doing two
+                  push-ups a day, waking up five minutes early, or holding a
+                  single short phone call.He calls them<b> atomic habits.</b>
+                  These small changes will have a revolutionary effect on your
+                  career, your relationships and your life.
+                </p>
+                <a
+                  href="https://www.amazon.in/Atomic-Habits-James-Clear/dp/1847941834/ref=sr_1_3?adgrpid=58100817079&dchild=1&ext_vrnc=hi&gclid=Cj0KCQiA88X_BRDUARIsACVMYD-GHrKICG0hT6ZGuAhzR_M6IL8TSwNm0tgUZNv3AV4t6cIf1Lmnq9caAvnvEALw_wcB&hvadid=294143552635&hvdev=c&hvlocphy=9061709&hvnetw=g&hvqmt=b&hvrand=1155751446408803168&hvtargid=kwd-679649087184&hydadcr=23637_1725037&keywords=atomic+habit+book&qid=1609667595&sr=8-3&tag=googinhydr1-21"
+                  class="btn btn-primary"
+                  style="position: absolute; right: 30px; bottom: 25px"
+                  >Buy Now</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="card" style="width: 800px">
+          <div class="row no-gutters">
+            <div class="col-auto">
+              <img
+                src="https://images-na.ssl-images-amazon.com/images/I/41sEB1SxefL._SX307_BO1,204,203,200_.jpg"
+                class="img-fluid"
+                alt=""
+                style="width: 300px; height: 350px; border-radius: 3px"
+              />
+            </div>
+            <div class="col">
+              <div class="card-block px-4" style="margin-top: 30px">
+                <h5 class="card-title"
+                  ><u>Autobiography of a Yogi by Paramahansa Yogananda</u></h5
+                >
+                <p class="card-text"
+                  >Autobiography of a Yogi is one of the famous Spiritual Book
+                  of the Twentieth Century which is written by Paramahansa
+                  Yogananda. In this book he explained memorable findings of the
+                  world of saints and yogis and also explained science and
+                  miracles, death and resurgence. With soul-satisfying
+                  consciousness and endearing wit, he lightens the hidden
+                  secrets of life and the world opening our hearts and minds to
+                  the happiness, splendour and limitless spiritual capacities
+                  that last in the lives of every human being.</p
+                >
+                <a
+                  href="https://www.amazon.in/Autobiography-Yogi-Paramahansa-Yogananda/dp/8172345364/ref=pd_lpo_14_t_0/257-8496315-8685930?_encoding=UTF8&pd_rd_i=8172345364&pd_rd_r=16088c68-c504-419f-93e4-31d3497efe41&pd_rd_w=vRG2I&pd_rd_wg=H1DOh&pf_rd_p=5a903e39-3cff-40f0-9a69-33552e242181&pf_rd_r=6DKRWR15Y67P5H2G1D34&psc=1&refRID=6DKRWR15Y67P5H2G1D34"
+                  class="btn btn-primary"
+                  style="position: absolute; right: 30px; bottom: 15px"
+                  >Buy Now</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="card" style="width: 800px">
+          <div class="row no-gutters">
+            <div class="col-auto">
+              <img
+                src="https://images-na.ssl-images-amazon.com/images/I/91M8VYAZkTL.jpg"
+                class="img-fluid"
+                alt=""
+                style="width: 300px; height: 350px; border-radius: 3px"
+              />
+            </div>
+            <div class="col">
+              <div class="card-block px-4" style="margin-top: 30px">
+                <h5 class="card-title"
+                  ><u
+                    >Inner Engineering: A Yogi’s Guide to Joy by Sadhguru</u
+                  ></h5
+                >
+                <p class="card-text"
+                  >In his revolutionary new book, visionary, mystic and yogi
+                  Sadhguru distils his own experiences with spirituality and
+                  yoga and introduces the transformational concept of Inner
+                  Engineering. Developed by him over several years, this
+                  powerful practice serves to align the mind and the body with
+                  energies around and within, creating a world of limitless
+                  power and possibilities. Inner Engineering is your own
+                  software for joy and well-being.</p
+                >
+                <a
+                  href="https://www.amazon.in/Inner-Engineering-Yogis-Guide-Joy/dp/0143428845/ref=sr_1_1?adgrpid=58502691723&dchild=1&ext_vrnc=hi&gclid=Cj0KCQiA88X_BRDUARIsACVMYD-0KnoABo_K3KxQXpEgDSGn9R8qptst5hsRIhjpXlStiorKaYBi_ngaAnUkEALw_wcB&hvadid=294145487884&hvdev=c&hvlocphy=9061709&hvnetw=g&hvqmt=e&hvrand=15721697806806937618&hvtargid=kwd-301661175488&hydadcr=1080_1856494&keywords=inner+engineering+book&qid=1609669031&sr=8-1&tag=googinhydr1-21"
+                  class="btn btn-primary"
+                  style="position: absolute; right: 30px; bottom: 15px"
+                  >Buy Now</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="card" style="width: 800px">
+          <div class="row no-gutters">
+            <div class="col-auto">
+              <img
+                src="https://images-na.ssl-images-amazon.com/images/I/81Qaq2O8dsL.jpg"
+                class="img-fluid"
+                alt=""
+                style="width: 300px; height: 350px; border-radius: 3px"
+              />
+            </div>
+            <div class="col">
+              <div class="card-block px-4" style="margin-top: 25px">
+                <h5 class="card-title"
+                  ><u>Tools of Titans by Tim Ferriss</u></h5
+                >
+                <p class="card-text"
+                  >“This book contains the distilled tools, tactics, and ‘inside
+                  baseball’. It includes new tips from past guests, and life
+                  lessons from new ‘guests’.“What makes the show different is a
+                  relentless focus on actionable details" .Everything within
+                  these pages has been vetted, explored, and applied to my own
+                  life in some fashion. I’ve used dozens of the tactics and
+                  philosophies in high-stakes negotiations, high-risk
+                  environments, or large business dealings. The lessons have
+                  made me millions of dollars and saved me years of wasted
+                  effort and frustration.</p
+                >
+                <a
+                  href="https://www.amazon.in/Tools-Titans-Billionaires-World-Class-Performers/dp/1785041274/ref=sr_1_1?adgrpid=55731090661&dchild=1&ext_vrnc=hi&gclid=Cj0KCQiA88X_BRDUARIsACVMYD99SYyDEhrrF9TyKKl6ro3VXJ8KVHVhMmiTauXXCYULXIx8uqwXRBEaAlo7EALw_wcB&hvadid=294110775723&hvdev=c&hvlocphy=9061709&hvnetw=g&hvqmt=e&hvrand=16161580471192727111&hvtargid=kwd-297379988788&hydadcr=23639_1725049&keywords=tools+of+titans&qid=1609669342&sr=8-1&tag=googinhydr1-21"
+                  class="btn btn-primary"
+                  style="position: absolute; right: 30px; bottom: 15px"
+                  >Buy Now</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="card" style="width: 800px">
+          <div class="row no-gutters">
+            <div class="col-auto">
+              <img
+                src="https://images-na.ssl-images-amazon.com/images/I/81l3rZK4lnL.jpg"
+                class="img-fluid"
+                alt=""
+                style="width: 300px; height: 350px; border-radius: 3px"
+              />
+            </div>
+            <div class="col">
+              <div class="card-block px-4" style="margin-top: 25px">
+                <h5 class="card-title"
+                  ><u
+                    >Ikigai: The Japanese secret to a long and happy life by
+                    Héctor García,Francesc Miralles</u
+                  ></h5
+                >
+                <p class="card-text"
+                  >We all have an ikigai. It's the Japanese word for ‘a reason
+                  to live’ or ‘a reason to jump out of bed in the morning’. It’s
+                  the place where your needs, desires, ambitions, and
+                  satisfaction meet. A place of balance. This book will help you
+                  work out what your own ikigai really is, and equip you to
+                  change your life. You have a purpose in this world: your
+                  skills, your interests and your desires have made you the
+                  perfect candidate. All you have to do is find it. Do that, and
+                  you can make every single day of your life joyful and
+                  meaningful.</p
+                >
+                <a
+                  href="https://www.amazon.in/Ikigai-H%C3%A9ctor-Garc%C3%ADa/dp/178633089X/ref=sr_1_1?adgrpid=57954390374&dchild=1&ext_vrnc=hi&gclid=Cj0KCQiA88X_BRDUARIsACVMYD9BqCletsCBKTxLuLRGF0IYogHuwvF-Od4Aotp0sgbUvo1adWWpZFQaAnPDEALw_wcB&hvadid=356462930615&hvdev=c&hvlocphy=9061709&hvnetw=g&hvqmt=e&hvrand=15802929227132384752&hvtargid=kwd-299651597459&hydadcr=18444_1935080&keywords=ikigai&qid=1609671173&sr=8-1&tag=googinhydr1-21"
+                  class="btn btn-primary"
+                  style="position: absolute; right: 30px; bottom: 15px"
+                  >Buy Now</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="card" style="width: 800px">
+          <div class="row no-gutters">
+            <div class="col-auto">
+              <img
+                src="https://images-na.ssl-images-amazon.com/images/I/81UZJqFG7VL.jpg"
+                class="img-fluid"
+                alt=""
+                style="width: 300px; height: 350px; border-radius: 3px"
+              />
+            </div>
+            <div class="col">
+              <div class="card-block px-4" style="margin-top: 25px">
+                <h5 class="card-title"
+                  ><u>The Magic of Thinking Big by David J Schwartz</u></h5
+                >
+                <p class="card-text"
+                  >First published in 1959, David J Schwartz's classic teachings
+                  are as powerful today as they were then. Practical, empowering
+                  and hugely engaging, this book will not only inspire you, it
+                  will give you the tools to change your life for the better -
+                  starting from now. His step-by-step approach will show you how
+                  to: Defeat disbelief and the negative power it creates, Make
+                  your mind produce positive thoughts, Plan a concrete
+                  success-building programme, Do more and do it better by
+                  turning on your creative power, Capitalise on the power of
+                  NOW.</p
+                >
+                <a
+                  href="https://www.amazon.in/Magic-thinking-Big-David-Schwartz/dp/1785040472/ref=sr_1_1?adgrpid=55791422061&dchild=1&ext_vrnc=hi&gclid=Cj0KCQiA88X_BRDUARIsACVMYD_Uhfv-lVVcO1BxQxT64gCLrJmr1F4XNp9hHghbMYfH_7fFgjHgoFEaArtsEALw_wcB&hvadid=294145731013&hvdev=c&hvlocphy=9061709&hvnetw=g&hvqmt=e&hvrand=11448119655462845633&hvtargid=kwd-296694438400&hydadcr=1077_1856491&keywords=the+magic+of+thinking+big&qid=1609670819&sr=8-1&tag=googinhydr1-21"
+                  class="btn btn-primary"
+                  style="position: absolute; right: 30px; bottom: 15px"
+                  >Buy Now</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <br />
+    <br />
+  </body>
+</html>

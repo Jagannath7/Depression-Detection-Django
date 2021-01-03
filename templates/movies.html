@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+  </head>
+
+  <body
+    style="background-image: url(https://wallpaperaccess.com/full/449903.jpg)"
+  >
+    <nav
+      class="navbar navbar-expand-lg navbar-light"
+      style="
+        background-image: linear-gradient(
+          to left top,
+          #ffffff,
+          #f1d9f6,
+          #f6add6,
+          #fc7e9f,
+          #f05454
+        );
+      "
+    >
+      <a class="navbar-brand" href="/">Depression Detection</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          <li class="nav-item dropdown active">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Tools
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              {%if user.is_authenticated %}
+              <a class="dropdown-item" href="/prediction/image"
+                >Image Detection</a
+              >
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/prediction/text"
+                >Text Detection</a
+              >
+              {%else%}
+              <a class="dropdown-item" href="/signin">Image Detection</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/signin">Text Detection</a>
+              {%endif%}
+            </div>
+          </li>
+          <li class="nav-item dropdown active">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Resources
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item a1" href="/resources/books">Books</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/resources/movies">Movies</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/resources/videos">Videos</a>
+            </div>
+          </li>
+          {%if user.is_authenticated%}
+          <li class="nav-item dropdown active">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink-4"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              ><i class="fa fa-user"></i
+            ></a>
+            <div
+              class="dropdown-menu dropdown-menu-right dropdown-cyan"
+              aria-labelledby="navbarDropdownMenuLink-4"
+            >
+              <a class="dropdown-item" href="/myaccount">My account</a>
+              <a class="dropdown-item" href="/signout">Sign out</a>
+            </div>
+          </li>
+          <li class="nav-item active">
+            {%else%}
+
+            <a class="btn btn-primary" href="/signin">Sign in</a>
+          </li>
+          {%endif%}
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container" style="display: flex; justify-content: center">
+      <div class="child">
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            margin-bottom: 100px;
+          "
+        >
+          <div
+            class="card text-center"
+            style="
+              width: 10rem;
+              height: 4rem;
+              border-radius: 16px;
+              background-color: #ffffff;
+              box-shadow: 7px 7px 7px 7px black;
+            "
+          >
+            <div class="card-body"> Movies </div>
+          </div>
+        </div>
+
+        <div class="card-deck">
+          <div class="card">
+            <img
+              class="card-img-top"
+              src="https://i.pinimg.com/564x/91/94/bb/9194bbfac3481c4940c6c0c2afdbe16b.jpg"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h6 class="card-title" style="font-size: 18px; text-align: center"
+                >The Pursuit of Happyness</h6
+              >
+            </div>
+          </div>
+          <div class="card">
+            <img
+              class="card-img-top"
+              src="https://upload.wikimedia.org/wikipedia/en/d/dc/Into_the_Wild_%282007_film_poster%29.png"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center; font-size: 18px"
+                >Into the Wild</h5
+              >
+            </div>
+          </div>
+          <div class="card">
+            <img
+              class="card-img-top"
+              src="https://upload.wikimedia.org/wikipedia/en/1/18/Rocky_poster.jpg"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center; font-size: 18px"
+                >Rocky</h5
+              >
+            </div>
+          </div>
+          <div class="card">
+            <img
+              class="card-img-top"
+              src="https://i.pinimg.com/564x/04/5e/19/045e1902701ffc74e977f9407e49ddbf.jpg"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center; font-size: 18px"
+                >JOBS</h5
+              >
+            </div>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="card-deck">
+          <div class="card">
+            <img
+              class="card-img-top"
+              src="https://upload.wikimedia.org/wikipedia/en/5/57/Life_of_Pi_2012_Poster.jpg"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h6 class="card-title" style="font-size: 18px; text-align: center"
+                >Life of Pi</h6
+              >
+            </div>
+          </div>
+          <div class="card">
+            <img
+              class="card-img-top"
+              src="http://www.impawards.com/intl/india/2005/posters/iqbal.jpg"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center; font-size: 18px"
+                >Iqbal</h5
+              >
+            </div>
+          </div>
+          <div class="card">
+            <img
+              class="card-img-top"
+              src="https://upload.wikimedia.org/wikipedia/en/thumb/d/df/3_idiots_poster.jpg/220px-3_idiots_poster.jpg"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center; font-size: 18px"
+                >3 Idiots</h5
+              >
+            </div>
+          </div>
+          <div class="card">
+            <img
+              class="card-img-top"
+              src="https://upload.wikimedia.org/wikipedia/en/thumb/9/99/Dangal_Poster.jpg/220px-Dangal_Poster.jpg"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center; font-size: 18px"
+                >Dangal</h5
+              >
+            </div>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="card-deck">
+          <div class="card">
+            <img
+              class="card-img-top"
+              src="https://i.pinimg.com/564x/62/85/04/62850445bd0879af8262307bfed8b3c6.jpg"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h6 class="card-title" style="font-size: 18px; text-align: center"
+                >The Founder</h6
+              >
+            </div>
+          </div>
+          <div class="card">
+            <img
+              class="card-img-top"
+              src="https://i0.wp.com/bestoftheyear.in/wp-content/uploads/2017/06/Iamkalam.png?zoom=1.5&fit=400%2C600&ssl=1"
+              alt="Card image cap"
+              style="height: 360px"
+            />
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center; font-size: 18px"
+                >I Am Kalam</h5
+              >
+            </div>
+          </div>
+          <div class="card">
+            <img
+              class="card-img-top"
+              src="https://upload.wikimedia.org/wikipedia/en/7/76/Unbroken_poster.jpg"
+              alt="Card image cap"
+              style="height: 360px"
+            />
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center; font-size: 18px"
+                >Unbroken</h5
+              >
+            </div>
+          </div>
+          <div class="card">
+            <img
+              class="card-img-top"
+              src="https://i.pinimg.com/564x/5a/38/c7/5a38c7528844a622936b634f9ada2ed6.jpg"
+              alt="Card image cap"
+              style="height: 360px"
+            />
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center; font-size: 18px"
+                >Bhaag Milkha Bhaag</h5
+              >
+            </div>
+          </div>
+        </div>
+
+        <br />
+        <br />
+      </div>
+    </div>
+  </body>
+</html>
