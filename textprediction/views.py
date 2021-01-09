@@ -11,7 +11,7 @@ def text(request):
         text_result = text_prediction.predict(f)
         print(text_result)
     
-        return render(request,'text.html', {'text_result' : text_result})
+        return render(request,'text.html', {'text':f ,'text_result' : text_result})
 
     else:
         return render(request,'text.html')

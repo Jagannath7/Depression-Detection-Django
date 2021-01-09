@@ -122,6 +122,7 @@
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
+              href=""
               ><i class="fa fa-user"></i
             ></a>
             <div
@@ -145,8 +146,8 @@
       <div
         class="card"
         style="
-          height: 450px;
-          width: 600px;
+          height: 565px;
+          width: 670px;
 
           background-image: linear-gradient(
             to left top,
@@ -162,6 +163,95 @@
           <h4 class="card-title" style="display: flex; justify-content: center"
             >Tell us how are you felling today?</h4
           >
+
+          {% if text_result %}
+          <div>
+            <div style="padding-top: 30px">
+              <form>
+                <div class="form-group">
+                  <textarea
+                    readonly
+                    class="form-control-plaintext"
+                    id="exampleFormControlTextarea1"
+                    rows="4"
+                    style="background-color: #ffffff; border-radius: 10px"
+                  >
+ {{text}} </textarea
+                  >
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    padding-top: 20px;
+                    padding-bottom: 25px;
+                  "
+                >
+                  <div
+                    class="card text-center"
+                    style="
+                      width: 7rem;
+                      height: 2rem;
+                      border-radius: 20px;
+                      background-color: #ffffff;
+                      box-shadow: 2px 2px 2px 2px black;
+                    "
+                  >
+                    <div class="card-body" style="padding-top: 4px">
+                      Result
+                    </div>
+                  </div>
+                </div>
+                <div style="display: flex; justify-content: center">
+                  <h3 style="font-family: 'Times New Roman', Times, serif"
+                    ><i> {{ text_result }} </i>
+                  </h3>
+                </div>
+
+                {% if text_result == "Depressed" %}
+                <p
+                  style="
+                    margin-top: 10px;
+                    font-family: 'Times New Roman', Times, serif;
+                    font-size: 17px;
+                  "
+                  >You have very significant symptoms of depression. Even if you
+                  don't feel weighed down by your symptoms, it is important to
+                  do something about them right now. When you’re feeling
+                  depressed, it can be hard to even do small things to take care
+                  of yourself.<b>
+                    But you should call a doctor or a mental health professional
+                    today.</b
+                  >
+                  And try to tell family and friends how you’re feeling.</p
+                >
+                {%else%}
+                <p
+                  style="
+                    margin-top: 10px;
+                    font-family: 'Times New Roman', Times, serif;
+                    font-size: 17px;
+                  "
+                  >You don't have any major symptoms of depression. So if you’re
+                  feeling low, you may just be having a few bad days. If you are
+                  still concerned about your feelings, you should talk to
+                  someone about how you're feeling.</p
+                >
+                {% endif %}
+                <br />
+
+                <div style="display: flex; justify-content: center">
+                  <a
+                    class="btn btn-primary"
+                    href="/prediction/text"
+                    role="button"
+                    >RETAKE THE TEST</a
+                  >
+                </div>
+              </form>
+            </div>
+          </div>
+          {%else%}
           <div style="padding-top: 30px">
             <form
               method="POST"
@@ -186,16 +276,101 @@
             </form>
           </div>
 
-          {% if text_result %}
-          <div class="row">
-            <div class="col-9" style="padding-top: 20px"
-              ><h2>Result: <i> {{ text_result }} </i> </h2></div
-            >
-          </div>
           {% endif %}
         </div>
       </div>
     </div>
+    <br />
+    <br />
+    {% if text_result %}
+    <div style="display: flex; justify-content: center">
+      <div
+        class="card text-center"
+        style="
+          width: 9rem;
+          height: 4rem;
+          border-radius: 16px;
+          background-color: #ffffff;
+          box-shadow: 5px 5px 5px 5px black;
+        "
+      >
+        <div class="card-body"> Resources </div>
+      </div>
+    </div>
+    <br />
+    <div style="display: flex; justify-content: center">
+      <p
+        >These feelings should go away as the problem passes but you can help
+        things along by trying some of the Resources below:</p
+      >
+    </div>
+    <div class="card-deck" style="margin: 20px 100px 0px 100px">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title" style="text-align: center; font-size: 20px"
+            >Books</h5
+          >
+          <p class="card-text" style="font-size: 16px"
+            >Books Inspire us, motivates us, encourage us and always make us see
+            the right path, it makes us understand that nothing is impossible in
+            this world, It allows us to take action and help us to know our true
+            potential, Books illuminates our life, Books show us our passion and
+            make us understand that all Limits are self-imposed, Limits are
+            usually in our mind.</p
+          >
+          <a
+            class="nav-link"
+            href="/resources/books"
+            style="position: absolute; bottom: 0px; right: 0px; font-size: 14px"
+            >More Books</a
+          >
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title" style="text-align: center; font-size: 20px"
+            >Movies</h5
+          >
+          <p class="card-text" style="font-size: 16px"
+            >Movies affect many of us powerfully because the combined impact of
+            images, music, dialogue, lighting, sound and special effects can
+            elicit deep feelings and help us reflect on our lives. They can help
+            us to better understand our own lives, the lives of those around us
+            and even how our society and culture operate.</p
+          >
+          <a
+            class="nav-link"
+            href="/resources/movies"
+            style="position: absolute; bottom: 0px; right: 0px; font-size: 14px"
+            >More Movies</a
+          >
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title" style="text-align: center; font-size: 20px"
+            >Motivational Videos</h5
+          >
+          <p class="card-text" style="font-size: 16px"
+            >Not everyone falls into success with their first try. In fact, very
+            few of us do. Life for most people is a journey of self-discovery –
+            finding out who we are, what we’re best at, and how we can make a
+            difference in this world. Unfortunately, the inescapable obstacles
+            that plague our path can stop us in our tracks. Some of the best
+            places to look for inspiration during times of trouble are from
+            those who have succeeded through the tough times. Some you may have
+            heard of, some may surprise you, but hopefully all will inspire you
+            today.</p
+          >
+          <a
+            class="nav-link"
+            href="/resources/videos"
+            style="position: absolute; bottom: 0px; right: 0px; font-size: 14px"
+            >More videos</a
+          >
+        </div>
+      </div> </div
+    >{% endif %}
     <br />
     <br />
     <br />
